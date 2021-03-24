@@ -8,17 +8,25 @@ class Pruebas(unittest.TestCase):
 
         lista_res = ["Años lluviosos", "La vide de Pepa", "Kira y el misterio del dragón"]
 
-        self.assertEqual(mas_antiguos, lista_res)
+        self.assertEqual(mas_antiguos(lista), lista_res)
 
     def test_mas_antiguos_anyo_incorrecto(self):
         lista = crear_lista_libros()
 
         libro6 = Libro("Kayla", "Kira y el misterio del dragón", 1898)
 
-        lista_libros.append(libro6)
-        
+        lista.append(libro6)
 
-        self.assertRaisesRegexp(ValueError, "El valor del primer caracter en el numero de vuelo tiene que ser una letra.", __init__, "2A117", Aircraft("G-EUAH", "Airbus A319", 22, 6)
+        self.assertRaisesRegexp(ValueError, "El año del libro no puede ser anterior a 1900", mas_antiguos, lista)
+
+     def test_mas_antiguos_anyo_incorrecto_2(self):
+        lista = crear_lista_libros()
+
+        libro6 = Libro("Kayla", "Kira y el misterio del dragón", 2058)
+
+        lista.append(libro6)
+
+        self.assertRaisesRegexp(ValueError, "El año del libro no puede ser posterior a 2021", mas_antiguos, lista)
 
 
 
@@ -28,6 +36,10 @@ class Suite(unittest.TestSuite):
     def __init__(self):
         super(Suite, self).__init__()
         self.addTest(Pruebas('test_mas_antiguos'))
+        self.addTest(Pruebas('test_mas_antiguos_anyo_incorrecto'))
+        self.addTest(Pruebas('test_mas_antiguos_anyo_incorrecto_2'))
+
+
 
 if __name__ == "__main__":
     runner = unittest.TextTestRunner()
