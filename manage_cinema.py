@@ -36,8 +36,8 @@ class Cinema:
             row: la fila de la butaca
             seat: el numero de la butaca
         """
-        if self.__seating[int(row)][seat] is None:
-            self.__seating[int(row)][seat] = "occupied"
+        if self.__seating[row][seat] is None:
+            self.__seating[row][seat] = "occupied"
 
     def count_free_seats(self,rows_seats,total):
         """
@@ -49,6 +49,8 @@ class Cinema:
         for row, seat in rows_seats:
             if self.__seating[row][seat] == None:
                 total+=1
+
+        return total
 
 #------------------------------------------- MAIN -----------------------------------------------
 cinema = Cinema(rows=10, seats_per_row=8)
@@ -63,37 +65,37 @@ cinema.print_seating()
 print("\n------------- Error 2 -----------------")
 seats = [(2,4), (3,1), (5,2)]
 total = 0
-cinema.count_free_seats(seats,total)
-print("total: "+str(total))
+totalFinal = cinema.count_free_seats(seats,total)
+print("total: "+str(totalFinal))
 
 #ERROR 3: quiero modificar la butaca (2,4) de la lista anterior para que sea la (3,4) y no me deja.
 print("\n------------- Error 3 -----------------")
 seats[0][1]=3
 total = 0
-cinema.count_free_seats(seats,total)
-print("total: "+str(total))
+totalFinal = cinema.count_free_seats(seats,total)
+print("total: "+str(totalFinal))
 
 """ 
     ERROR 1:
         ¿Cual es?:
-            El problema se encontraba en la funcion book_seat,
-            ya que al indicar el numero de la fila no lo poniamos como int,
-            de forma que al no ser pasarle un int este no lo tomaba en cuenta
-            y pasaba por todas a filas. Es decir, en la lista, para poder
-            indicar el numero de fila se necesita un integer, pero le estabamos
-            pasando un string.
+            
         Solucion:
-            poner la variable con un int() de forma que cambiamos el tipo de 
-            variable de string a integer para que sea la adecuada.
+            
 
     ERROR 2:
         ¿Cual es?:
-
+            No habia ningun return, de modo que no devolviamos la solución que 
+            habiamos calculado. Al no devolver nada, el programa imprimia el valor
+            que tenia que era con el que habiamos inicializado la variable, es decir 0.
         Solucion:
+            Añadimos un return, de forma que obtenemos la variable y en el lugar
+            el que llamamos a la función, recogemos
+            la variable y es esa la que mostramos por pantalla.
 
     ERROR 3:
         ¿Cual es?:
-
+            Aquí también encontramos el mismo error que el anterior, el de la variable.
+            A demás, también 
         Solucion:
 
 """
