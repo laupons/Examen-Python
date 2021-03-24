@@ -12,5 +12,6 @@ class Libro:
             return self.__titulo
 
         def get_anyo(self):
+            return self.__anyo
 
         
