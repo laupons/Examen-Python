@@ -70,7 +70,7 @@ print("total: "+str(totalFinal))
 
 #ERROR 3: quiero modificar la butaca (2,4) de la lista anterior para que sea la (3,4) y no me deja.
 print("\n------------- Error 3 -----------------")
-seats[0][1]=3
+seats[0]=(3,4)
 total = 0
 totalFinal = cinema.count_free_seats(seats,total)
 print("total: "+str(totalFinal))
@@ -95,7 +95,12 @@ print("total: "+str(totalFinal))
     ERROR 3:
         ¿Cual es?:
             Aquí también encontramos el mismo error que el anterior, el de la variable.
-            A demás, también 
+            A demás, también nos encontramos con que los valores de la lista son tuplas,
+            por tanto no podemos modificarlas con el [1] intentando modificar un solo valor
+            de esta.
         Solucion:
+            La solución es sustituir el parámetro de la lista completamente, es decir en vez
+            de sustituir la parte de la tupla que queremos cambiar, sustituimos la tupla entera
+            por la nueva.
 
 """
